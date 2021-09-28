@@ -12,12 +12,8 @@ class Anfora: public Contenitore
     public:
         Anfora(double _capacity): Contenitore(){capacity=_capacity;}
         double getCapacity(){return capacity;}
-        void riempi(){
-          !CheckOverflow(capacity) ? versa(getCapacity()) : versa(getQt());
-        }
-        void svuota(){
-          !CheckUnderflow(capacity) ? togli(getCapacity()) : togli(getQt());
-        }
+        void riempi(){versa(getCapacity() - getQt());}
+        void svuota(){togli(getQt());}
         bool isVuota(){return (getQt()==0 ? true : false);}
         bool isPiena(){return (getQt()==this->capacity ? true : false);}
         void spostaContenuto(Anfora &_other){
@@ -40,11 +36,3 @@ class Anfora: public Contenitore
               }
       }
   };
-
-bool Anfora::CheckOverflow(double insertion){
-  return (getQt() + insertion > this->capacity ? true : false);
-}
-
-bool Anfora::CheckUnderflow(double _deletion){
-  return (getQt() - _deletion < 0 ? true : false);
-}
