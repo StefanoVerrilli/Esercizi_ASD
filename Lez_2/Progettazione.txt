@@ -1,0 +1,8 @@
+# Cosa ho bisogno:
+Funzione per controllare che i simboli siano quelli(tra problema e soluzione)
+Funzione per controllare che ci siano tutti i numeri naturali da 1...naturali
+Funzione per controllare che la soluzione sia corretta
+
+
+leggo Problema.txt
+leggo Soluzione.txt
