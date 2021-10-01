@@ -64,25 +64,22 @@ class resolver{
       bool resolver::CheckifAllNumbers(string _Solution_line){
         int i=0,read=0,element;
 
-        char to_convert[10];
         vector<int> vec,vec2;
         size_t sz;
-        string Mock,Numbers_string;
+        /* Estrapolazione dei Numeri contenuti all' interno del file soluzione ed inseriemento di
+        questi ultimi in un vettore */
         while(read<_Solution_line.length()){
             element = (stoi(_Solution_line.substr(read),&sz,10));
             vec.push_back(element);
-            sprintf(to_convert,"%d",element);
-            Numbers_string+=to_convert;
             read+=sz+1;
         }
-
+        /* Creazione del vettore contente la sequenza di numeri da 1...N basandosi sulla
+        lunghezza del vettore contente i numeri estratti dal file soluzione */
         for(i=1;i<vec.size()+1;i++){
-          sprintf(to_convert,"%d",i);
           vec2.push_back(i);
-          Mock+=to_convert;
         }
 
-        if(!CheckIfPermutation(Numbers_string,Mock,vec,vec2))
+        if(!CheckIfPermutation(vec,vec2))
             return false;
         
         if(max_element(vec) != vec.size())
