@@ -23,17 +23,13 @@ class resolver{
         ofstream S_Answer("Answer.txt");
         string Solution_line;
         string Problem_line;
-        getline(S_Solution,Solution_line);
-        getline(S_Problem,Problem_line);
-        while(!S_Solution.eof()){
+        while(getline(S_Solution,Solution_line) && getline(S_Problem,Problem_line)){
           /* Questa funzione utilizza le funzioni private e restituisce esito positivo solo 
           nel caso siano tutte corrette, poi scrive il risultato su file*/
           if(Checkforsymbols(Solution_line,Problem_line) && CheckifAllNumbers(Solution_line) && CheckifAnswerCorrect(Solution_line,Problem_line))
               S_Answer << "Correct" << "\n";
           else
               S_Answer << "Not Correct"<<"\n";
-          getline(S_Solution,Solution_line);
-          getline(S_Problem,Problem_line);
         }
         S_Answer.close();
         S_Solution.close();
@@ -55,7 +51,7 @@ class resolver{
             return false;
           return true;
       }
-      /* Quessta funzione effettua vari controlli sui numeri inseriti nella soluzione:
+      /* Questa funzione effettua vari controlli sui numeri inseriti nella soluzione:
       - Controlla che il massimo numero nella soluzione sia uguale al numero di elementi presenti.
         viene infatti richiesto di controllare che il massimo numero presente sia il numero di numeri
         contenuti nel file di soluzione
@@ -63,26 +59,25 @@ class resolver{
         dell' insieme di numero che va da 1..N, in caso contrario ritorna falso */
       bool resolver::CheckifAllNumbers(string _Solution_line){
         int i=0,read=0,element;
-
-        vector<int> vec,vec2;
+        vector<int> Permutation_vector,One_to_N;
         size_t sz;
         /* Estrapolazione dei Numeri contenuti all' interno del file soluzione ed inseriemento di
         questi ultimi in un vettore */
         while(read<_Solution_line.length()){
             element = (stoi(_Solution_line.substr(read),&sz,10));
-            vec.push_back(element);
+            Permutation_vector.push_back(element);
             read+=sz+1;
         }
         /* Creazione del vettore contente la sequenza di numeri da 1...N basandosi sulla
         lunghezza del vettore contente i numeri estratti dal file soluzione */
-        for(i=1;i<vec.size()+1;i++){
-          vec2.push_back(i);
+        for(i=1;i<Permutation_vector.size()+1;i++){
+          One_to_N.push_back(i);
         }
 
-        if(!CheckIfPermutation(vec,vec2))
+        if(!CheckIfPermutation(Permutation_vector,One_to_N))
             return false;
         
-        if(max_element(vec) != vec.size())
+        if(max_element(Permutation_vector) != Permutation_vector.size())
             return false;
 
             return true;
@@ -94,7 +89,7 @@ class resolver{
       bool resolver::CheckifAnswerCorrect(string _Solution_line,string _Problem_line){
             int i=0,val1,val2,read=0;
             size_t sz;
-            val1 = stoi(_Solution_line.substr(read),&sz,10);
+            val1 = stoi(_Solution_line.substr(0),&sz,10);
             /* Utilizzando la chiamata stoi() che restituisce in sz un puntatore al numero di
             caratteri letti possiamo utilizzare una variabile per tenere conto di tutti i numeri
             già letti e creare sottostringhe spiazzate di questa quantità più un carattere per
@@ -103,15 +98,11 @@ class resolver{
             while(i<_Problem_line.length()){
               read+=sz+1;
               val2 = stoi(_Solution_line.substr(read),&sz,10);
-              if(_Problem_line.at(i) == '>' && val1 > val2){
+              if((_Problem_line.at(i) == '>' && val1 > val2) || 
+                (_Problem_line.at(i) == '<' && val1<val2)){
                 val1 = val2;
                 i++;
                 continue;}
-              if(_Problem_line.at(i) == '<' && val1<val2){
-                val1 = val2;
-                i++;
-                continue;
-              }
               return false;
             }
 
