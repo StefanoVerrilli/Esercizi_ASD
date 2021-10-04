@@ -58,7 +58,7 @@ class resolver{
       - Controlla se l' insieme dei numeri presenti nella soluzione è effettivamente una permutazione
         dell' insieme di numero che va da 1..N, in caso contrario ritorna falso */
       bool resolver::CheckifAllNumbers(string _Solution_line){
-        int i=1,read=0,element;
+        int i=0,read=0,element;
         vector<int> Permutation_vector,One_to_N;
         size_t sz;
         /* Estrapolazione dei Numeri contenuti all' interno del file soluzione ed inseriemento di
@@ -66,7 +66,6 @@ class resolver{
         while(read<_Solution_line.length()){
             element = (stoi(_Solution_line.substr(read),&sz,10));
             Permutation_vector.push_back(element);
-            i++;
             read+=sz+1;
         }
         /* Creazione del vettore contente la sequenza di numeri da 1...N basandosi sulla
