@@ -3,19 +3,21 @@
 using namespace std;
 
 bool CheckIfPermutation(vector<int> Stringa1_int,vector<int> Stringa2_int){
-  vector<int> arr(Stringa1_int.size());
+  vector<int> arr(Stringa1_int.size()+1);
   int i;
           for(i=0;i<Stringa1_int.size();i++){
-            arr[Stringa1_int[i]]+=1;
+            arr.at(Stringa1_int.at(i))+=1;
           }
+
           for(i=0;i<Stringa2_int.size();i++){
-            arr[Stringa2_int[i]]-=1;
+            arr.at(Stringa2_int.at(i))-=1;
           }
 
           for(i=0;i<Stringa1_int.size();i++){
             if(arr[i]!=0)
               return false;
           }
+          
           return true;
 }
 
