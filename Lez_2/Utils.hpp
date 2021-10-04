@@ -14,7 +14,7 @@ bool CheckIfPermutation(vector<int> Stringa1_int,vector<int> Stringa2_int){
           }
 
           for(i=0;i<Stringa1_int.size();i++){
-            if(arr[i]!=0)
+            if(arr.at(i)!=0)
               return false;
           }
           
