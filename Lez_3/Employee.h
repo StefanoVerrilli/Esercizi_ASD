@@ -11,7 +11,7 @@ class Employee
 
     public:
         Employee(string _name,int _salary){salary=_salary;name=_name;}
-        virtual ~Employee() {cout<<"destory"<<endl;};
+        virtual ~Employee() {free(this);}
         string GetName(){return this->name;}
         int GetSalary(){return this->salary;}
         void virtual PrintInfo(){
@@ -27,7 +27,7 @@ class Manager:public Employee
 
     public:
         Manager(string _name,int _salary,int _bonus):Employee(_name,_salary){bonus=_bonus;}
-        virtual ~Manager() {cout<<"destroy 2"<<endl;};
+        virtual ~Manager() {free(this);}
         int GetBonus(){return this->bonus;}
         void PrintInfo(){
             cout<<this->GetName()<<endl;
