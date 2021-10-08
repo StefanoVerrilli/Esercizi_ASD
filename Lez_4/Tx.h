@@ -16,4 +16,14 @@ class Tx{
         string GetFrom(){return From;}
         string GetTo(){return To;}
         int GetVal(){return Val;}
+        void PrintInfo(){
+            cout<<"--------------------"<<endl;
+            cout<<"From: "<<this->GetFrom()<<endl;
+            cout<<"--------------------"<<endl;
+            cout<<"To: "<<this->GetTo()<<endl;
+            cout<<"--------------------"<<endl;
+            cout<<"Value: "<<this->GetVal()<<endl;
+            cout<<"--------------------"<<endl;
+            cout<<"\n"<<endl;
+        }
 };

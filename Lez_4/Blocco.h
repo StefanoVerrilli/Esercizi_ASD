@@ -23,12 +23,14 @@ class Blocco{
             Nodo<Tx>* Head = GetLL()->Getfirst();
             float sum=0;
             while(Head!=NULL){ 
-                    if(Head->GetElement()->GetTo()==_address)
-                        sum += Head->GetElement()->GetVal();
-                    else if(Head->GetElement()->GetFrom()==_address)
-                        sum -= Head->GetElement()->GetVal();
+                    if(Head->GetElement()->GetTo()==_address){
+                        Head->GetElement()->PrintInfo();
+                        sum += Head->GetElement()->GetVal();}
+                    else if(Head->GetElement()->GetFrom()==_address){
+                        Head->GetElement()->PrintInfo();
+                        sum -= Head->GetElement()->GetVal();}
                     Head = Head->GetNext();
             }
             return sum;
-            }
+        }
 };
