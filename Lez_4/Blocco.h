@@ -16,9 +16,7 @@ class Blocco{
         void AddTx(Tx *t){if(!closed)Txs.AddNodo(t);}
         void CloseTx(){closed=true;}
         LinkedList<Nodo,Tx> *GetLL(){return &Txs;}
-        int operator+(int &sum){
-            return sum;
-        }
+        
         float FindUserTxs(string _address){
             Nodo<Tx>* Head = GetLL()->Getfirst();
             float sum=0;
