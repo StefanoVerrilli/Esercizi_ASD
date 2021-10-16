@@ -12,8 +12,6 @@ int main(){
     Emp_vector.push_back(new Employee(string("Gennaro Espostio"),2000));
     Emp_vector.push_back(new Manager(string("Carmine Espostio"),2000,2000));
     Emp_vector.push_back(new Manager(string("Salvatore Espostio"),3000,3000));
-    Emp_vector.push_back(new Manager(string("Salvatore Espostio"),3000,3000));
-    Emp_vector.push_back(new Manager(string("Salvatore Espostio"),3000,3000));
 
     //Creare una lista di Employee
     Nodo *Node = new Nodo(Emp_vector.at(0));

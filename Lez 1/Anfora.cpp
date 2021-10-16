@@ -7,8 +7,8 @@ class Anfora: public Contenitore
   {
     private:
         double capacity;
-        bool CheckOverflow(double _quantity);
-        bool CheckUnderflow(double _quantity);
+        double Lt_to_add;
+        void Calulation_Recorsive(double _Lt_to_add,Anfora &_other);
     public:
         Anfora(double _capacity): Contenitore(){capacity=_capacity;}
         double getCapacity(){return capacity;}
@@ -17,14 +17,16 @@ class Anfora: public Contenitore
         bool isVuota(){return (getQt()==0 ? true : false);}
         bool isPiena(){return (getQt()==this->capacity ? true : false);}
         void spostaContenuto(Anfora &_other){
-            double Lt_to_add = _other.getCapacity() - _other.getQt();
+            Lt_to_add = _other.getCapacity() - _other.getQt();
             Calulation_Recorsive(Lt_to_add,_other);
         }
+        
+  };
 
-        // Il metodo ricosivo è stato ottimale per adattarsi al numero di unità necessarie per completare
-        // l' anfora, di seguito le condizioni di uscita e il calcolo della quantità da scalare.
-        void Calulation_Recorsive(double _Lt_to_add,Anfora &_other){
-          if(_other.isPiena() || _Lt_to_add ==0){return;}
+     // Il metodo ricosivo è stato ottimale per adattarsi al numero di unità necessarie per completare
+     // l' anfora, di seguito le condizioni di uscita e il calcolo della quantità da scalare.
+  void Anfora::Calulation_Recorsive(double _Lt_to_add,Anfora &_other){
+          if(_other.isPiena() || isVuota()){return;}
           if(getQt() >= _Lt_to_add){
               togli(_Lt_to_add);
               _other.versa(_Lt_to_add);
@@ -35,4 +37,3 @@ class Anfora: public Contenitore
                   Calulation_Recorsive(_Lt_to_add,_other);
               }
       }
-  };

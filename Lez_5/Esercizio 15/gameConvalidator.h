@@ -14,8 +14,7 @@ class gameConvalidator{
           string _Single_line;
           int i=0;
           vector<thread> ThreadVector;
-          for(i=0;i<n_thread;i++){
-            getline(_Multi_Input_Stream,_Single_line);
+          while(getline(_Multi_Input_Stream,_Single_line)){
             ThreadVector.push_back(thread(SingleFileConvalidator,_Single_line,_Output_file));
           }
           for(auto &th: ThreadVector){
@@ -41,12 +40,12 @@ class gameConvalidator{
           read+=sz+1;
           row.push_back(element);
     }
-    sum+=row.size();
-    Mat.push_back(row);}
-    if(sum==15)
-      return true;
-    else
-      return false;
+        sum+=row.size();
+        Mat.push_back(row);}
+        if(sum==15)
+          return true;
+        else
+          return false;
     }
 
 bool Find_If_Solution(vector<vector<int>> &Mat){
@@ -64,16 +63,21 @@ bool Find_If_Solution(vector<vector<int>> &Mat){
 
 void gameConvalidator::SingleFileConvalidator(string _Input_file,string _Output_file){
       ifstream _Input_stream(_Input_file);
-      ofstream _Output_stream(_Output_file);
+      ofstream _Output_stream;
       gameConvalidator *Convalidator = new gameConvalidator();
       vector<vector<int>> Mat(0,vector<int>(0,0));
       if((Convalidator->FileConvalidator(_Input_stream,Mat))){
-        if(Convalidator->Find_If_Solution(Mat))
+        if(Convalidator->Find_If_Solution(Mat)){
           mux.lock();
+          cout<<"Correct"<<endl;
+          _Output_stream.open(_Output_file,std::ios_base::app);
           _Output_stream << "Correct"<<endl;
-          mux.unlock();
-      }else
+          mux.unlock();}  
+      }else{
         mux.lock();
+        _Output_stream.open(_Output_file,std::ios_base::app);
+        cout<<"Not correct second part"<<endl;
         _Output_stream << "Not correct"<<endl;
         mux.unlock();
     }
+}

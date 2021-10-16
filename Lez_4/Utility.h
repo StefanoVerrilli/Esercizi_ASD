@@ -57,10 +57,10 @@ void Generate_Interface(LinkedList<Nodo,Blocco> _BC_Demo){
   string answer;
   float sum;
   while(1){
-  cout<<"Inserire Indirizzo da Ricercare / ottenere bilancio"<<endl;
-  cout<<"Query: ";
-  cin >> answer;
-  sum = GetBalance(_BC_Demo,answer);
-  cout<<"Total Balance: "<<sum<<endl;
+    cout<<"Inserire Indirizzo da Ricercare / ottenere bilancio"<<endl;
+    cout<<"Query: ";
+    cin >> answer;
+    sum = GetBalance(_BC_Demo,answer);
+    cout<<"Total Balance: "<<sum<<endl;
   }
 }

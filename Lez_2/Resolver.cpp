@@ -9,9 +9,9 @@ class resolver{
   private:
     string Problem;
     string Solution;
-    bool Checkforsymbols(string _Solution_line,string _Problem_line);
-    bool CheckifAllNumbers(string _Solution_line);
-    bool CheckifAnswerCorrect(string _Solution_line,string _Problem_line);
+    bool checkIfSymbolsAreCorrect(string _Solution_line,string _Problem_line);
+    bool checkIfAllNumbersAreUsed(string _Solution_line);
+    bool checkLogic(string _Solution_line,string _Problem_line);
   public:
       resolver(string _Problem,string _Solution){
           Problem = _Problem;
@@ -26,7 +26,7 @@ class resolver{
         while(getline(S_Solution,Solution_line) && getline(S_Problem,Problem_line)){
           /* Questa funzione utilizza le funzioni private e restituisce esito positivo solo 
           nel caso siano tutte corrette, poi scrive il risultato su file*/
-          if(Checkforsymbols(Solution_line,Problem_line) && CheckifAllNumbers(Solution_line) && CheckifAnswerCorrect(Solution_line,Problem_line))
+          if(checkIfSymbolsAreCorrect(Solution_line,Problem_line) && checkIfAllNumbersAreUsed(Solution_line) && checkLogic(Solution_line,Problem_line))
               S_Answer << "Correct" << "\n";
           else
               S_Answer << "Not Correct"<<"\n";
@@ -41,7 +41,7 @@ class resolver{
       /* Questa funzione controlla che i simboli di maggiore e minore tra la soluzione
       *  ed il problema siano gli stessi ritornando falso in caso contrario
       */
-      bool resolver::Checkforsymbols(string _Solution_line,string _Problem_line){
+      bool resolver::checkIfSymbolsAreCorrect(string _Solution_line,string _Problem_line){
         string save_for_solution;
         for(int i=0;i<_Solution_line.length();i++){
             if(_Solution_line.at(i)== '>' || _Solution_line.at(i)=='<')
@@ -57,7 +57,7 @@ class resolver{
         contenuti nel file di soluzione
       - Controlla se l' insieme dei numeri presenti nella soluzione è effettivamente una permutazione
         dell' insieme di numero che va da 1..N, in caso contrario ritorna falso */
-      bool resolver::CheckifAllNumbers(string _Solution_line){
+      bool resolver::checkIfAllNumbersAreUsed(string _Solution_line){
         int i=0,read=0,element;
         vector<int> Permutation_vector,One_to_N;
         size_t sz;
@@ -86,7 +86,7 @@ class resolver{
       /* Questa funzione controlla le relazioni esistenti tra 2 elementi numerici all' interno del
       file di soluzione (es.3>2) andando a ritornare falso nel caso in cui anche solo una di queste
       non sia rispettata.*/
-      bool resolver::CheckifAnswerCorrect(string _Solution_line,string _Problem_line){
+      bool resolver::checkLogic(string _Solution_line,string _Problem_line){
             int i=0,val1,val2,read=0;
             size_t sz;
             val1 = stoi(_Solution_line.substr(0),&sz,10);

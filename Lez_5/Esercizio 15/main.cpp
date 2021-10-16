@@ -1,8 +1,5 @@
 #include <iostream>
-#include <string>
-#include <vector>
 #include "gameConvalidator.h"
-#include <fstream>
 using namespace std;
 
 int main(){

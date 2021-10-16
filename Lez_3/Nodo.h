@@ -8,12 +8,11 @@ class Nodo
         Nodo *Next;
         Employee *Emp;
 
-    public:
+    public: 
         Nodo(Employee *_emp){Emp = _emp;}
         virtual ~Nodo() {free(this);}
         void SetNext(Nodo *_Next){this->Next = _Next;}
         Nodo *GetNext(){return this->Next;}
-        Nodo *GetMyself(){return this;}
         void SetEmployee(Employee *_emp){Emp = _emp;}
 
         Employee *GetEmployee(){return this->Emp;}

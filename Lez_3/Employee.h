@@ -34,5 +34,6 @@ class Manager:public Employee
             cout<<this->GetSalary()<<endl;
             cout<<this->GetBonus()<<endl;
         };
+
 };
 
