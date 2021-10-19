@@ -39,6 +39,4 @@ int CheckArray::FindHypotesis(vector<int> _Data,int _begin,int _end,vector<int> 
           result.push_back(Data1);}
           return Data2;
         }
-          }
-
-//Co author Francesco Pollasto 
+      }
