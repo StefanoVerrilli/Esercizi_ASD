@@ -6,6 +6,7 @@ using namespace std;
 class Mergesort{
   private:
     void merge(vector<int> &_vector,int _begin,int _end,int _mid,int &swap_counter);
+    void merge_cormen(vector<int> &_vector,int _begin,int _end,int _mid,int &swap_counter);
   public:
     void _mergesort(vector<int> &_vector,int _begin,int _end,int &swap_counter){
         if(_begin<_end){
@@ -18,34 +19,6 @@ class Mergesort{
 
 }; 
 
-/*void Mergesort::merge(vector<int> &_vector,int _begin,int _end,int _mid,int &swap_counter){
-  vector<int> Demo_vector(_begin+_end+1);
-  vector<int>::iterator i,j,k;
-  cout<<*_vector.begin()<<endl;
-  iterator it{_mid};
-  vector<int>::iterator i_Demo = Demo_vector.begin()+ (_mid+1);
-  for(i,i_Demo;i!=_vector.begin();--i,--i_Demo){
-    *(i_Demo-1) = *(i-1);
-  }
-
-  j = _vector.begin()+_mid;
-  auto j_Demo = Demo_vector.begin()+_mid;
-  for(j,j_Demo;j<_vector.end();j++,j_Demo++){
-    auto aux = prev(j_Demo,_end+_mid);
-    *aux = *j+1;
-  }
-
-  for(auto k = _vector.begin();k<=_vector.end();k++){
-    if(j_Demo < i_Demo){
-      swap_counter++;
-      cout<<"Elementi swappati: "<<*j<<" con: "<<*i<<endl;
-      j_Demo = prev(j_Demo,1);
-      *k = *(j_Demo--);
-    }else{
-      *k = *(i_Demo++);
-    }
-  }
-};*/
 
 void Mergesort::merge(vector<int> &_vector,int _begin,int _end,int _mid,int &swap_counter){
   int n = _begin+_end+1;
@@ -67,3 +40,30 @@ void Mergesort::merge(vector<int> &_vector,int _begin,int _end,int _mid,int &swa
     }
   }
 };
+
+/*void Mergesort::merge_cormen(vector<int> &_vector,int _begin,int _end,int _mid,int &swap_counter){
+  vector<int> n1(_mid-_begin+1);
+  vector<int> n2(_end-_mid);
+  vector<int>::iterator i,j;
+  vector<int>::iterator it = _vector.begin();
+  for(i=n1.begin(),it=n1.begin();i<n1.end();i++,it++){
+    i = next(it,_begin-1);
+  }
+  vector<int>::iterator it2 = _vector.begin();
+  for(j= n2.begin(),it2=n2.begin();j<n2.end();j++,it2++){
+    j = next(it2,_mid);
+  }
+  n1.push_back(100000000);
+  n2.push_back(10000000);
+  i=n1.begin();j=n2.begin();
+  for(int k=_begin;k<_end;k++){
+    if(*i <= *j){
+      _vector.at(k) = *i;
+      swap_counter++;
+      i+=1;
+    }else{
+      _vector.at(k) = *j;
+      j+=1;
+    }
+  }
+}*/
