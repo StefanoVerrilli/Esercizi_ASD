@@ -39,7 +39,7 @@ void Quicksort::partition(vector<int> &_vec,int _begin,int _end,int &first_pivot
     }
   //Se invece gli elementi risultano essere più grandi o al massimo uguali del secondo pivot
     else if(_vec.at(k) >= second_pivot){
-    //Allora swappa quest' ultimo con un elemento più piccolo del secondo pivot
+    //Allora swappa quest' ultimo con un elemento più piccolo del secondo pivot che trovi partendo da end-1
       while(_vec.at(j) > second_pivot && k<j)
         j--;
       swap(_vec.at(k),_vec.at(j));

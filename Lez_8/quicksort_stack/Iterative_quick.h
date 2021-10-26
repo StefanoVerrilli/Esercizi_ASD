@@ -17,7 +17,8 @@ class Iterative_quick{
         int pivot = Partition(_vec,_begin,_end);
         vector<int>::iterator pivot_split = _vec.begin() + pivot;
         vector<int> sx_vec,dx_vec;
-        for(auto i=_vec.begin();i==pivot_split;i++){sx_vec.push_back(*i);}
+        vector<int>::iterator i,j;
+        for(i=_vec.begin();i==pivot_split;i++){sx_vec.push_back(*i);}
         if(sx_vec.size()!=0){
           _MyStack.push(_begin);
           cout<<"Pushing _begin "<<_begin<<endl;
@@ -25,7 +26,7 @@ class Iterative_quick{
           cout<<"Pusing pivot-1 "<<pivot-1<<endl;
           sx_vec.clear();
         }
-        for(auto j=pivot_split+1;j!=_vec.end();j++){dx_vec.push_back(*j);}
+        for(j=pivot_split+1;j!=_vec.end();j++){dx_vec.push_back(*j);}
         if(dx_vec.size()!=0){
           _MyStack.push(pivot+1);
           cout<<"Pushing: "<<pivot+1<<endl;
